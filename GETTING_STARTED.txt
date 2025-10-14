@@ -1,0 +1,25 @@
+SUZA LaTeX & AI Workshop - Quick Start
+
+1. CHOOSE PLATFORM:
+   - Online: Use Overleaf (recommended)
+   - Local: Install LaTeX distribution
+
+2. TEST:
+   Open: 01_Day1_Basics/sample_article.tex
+   Compile and verify it works
+
+3. LEARN:
+   Follow the 3-day curriculum:
+   - Day 1: Basics
+   - Day 2: Advanced
+   - Day 3: AI Integration
+
+4. RESOURCES:
+   - README.md - Complete documentation
+   - resources/cheatsheet_latex.md - Quick reference
+
+5. HELP:
+   - Email: massoud.hamad@suza.ac.tz
+   - Online: https://tex.stackexchange.com
+
+Good luck!

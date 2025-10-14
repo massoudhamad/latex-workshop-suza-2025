@@ -1,0 +1,10 @@
+\beamer@sectionintoc {1}{What is LaTeX?}{3}{0}{1}
+\beamer@sectionintoc {2}{Getting Started}{5}{0}{2}
+\beamer@sectionintoc {3}{Document Structure}{7}{0}{3}
+\beamer@sectionintoc {4}{Text Formatting}{10}{0}{4}
+\beamer@sectionintoc {5}{Mathematical Formulas}{14}{0}{5}
+\beamer@sectionintoc {6}{Tables and Figures}{20}{0}{6}
+\beamer@sectionintoc {7}{Cross-References}{24}{0}{7}
+\beamer@sectionintoc {8}{Hands-On Practice}{26}{0}{8}
+\beamer@sectionintoc {9}{Troubleshooting}{28}{0}{9}
+\beamer@sectionintoc {10}{Resources}{30}{0}{10}

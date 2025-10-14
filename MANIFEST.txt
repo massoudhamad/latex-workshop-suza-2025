@@ -1,0 +1,31 @@
+SUZA LaTeX & AI Workshop Package - File Manifest
+============================================================
+Generated: 2025-10-12 08:57:44
+
+Latex_AI_Workshop_SUZA/
+  GETTING_STARTED.txt (543 bytes)
+  LICENSE (196 bytes)
+  README.md (2,064 bytes)
+  02_Day2_Advanced/
+    exercises_day2.md (231 bytes)
+    references.bib (537 bytes)
+  03_Day3_AI/
+    ai_prompts_examples.md (1,314 bytes)
+    exercises_day3.md (241 bytes)
+    final_project/
+      guidelines.md (222 bytes)
+  resources/
+    LOGO_INSTRUCTIONS.txt (491 bytes)
+    cheatsheet_latex.md (909 bytes)
+    bibliography_styles/
+    example_images/
+    templates/
+  scripts/
+    compile_all.sh (498 bytes)
+  01_Day1_Basics/
+    01_Day1_Basics.tex (3,804 bytes)
+    exercises_day1.md (218 bytes)
+    sample_article.tex (1,145 bytes)
+    solutions_day1/
+
+Total files: 14

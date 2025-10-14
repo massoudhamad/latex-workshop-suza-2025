@@ -1,0 +1,11 @@
+\beamer@sectionintoc {1}{Recap: Day 1 Essentials}{3}{0}{1}
+\beamer@sectionintoc {2}{Bibliography with BibTeX}{4}{0}{2}
+\beamer@sectionintoc {3}{Document Organization}{11}{0}{3}
+\beamer@sectionintoc {4}{Reports and Theses}{14}{0}{4}
+\beamer@sectionintoc {5}{Creating Presentations}{19}{0}{5}
+\beamer@sectionintoc {6}{Custom Commands}{26}{0}{6}
+\beamer@sectionintoc {7}{Advanced Formatting}{30}{0}{7}
+\beamer@sectionintoc {8}{Collaborative Writing}{34}{0}{8}
+\beamer@sectionintoc {9}{Hands-On Practice}{37}{0}{9}
+\beamer@sectionintoc {10}{Tips and Best Practices}{40}{0}{10}
+\beamer@sectionintoc {11}{Preparing for Day 3}{43}{0}{11}

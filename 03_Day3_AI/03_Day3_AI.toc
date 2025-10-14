@@ -1,0 +1,8 @@
+\beamer@sectionintoc {1}{The AI Revolution in Academic Writing}{3}{0}{1}
+\beamer@sectionintoc {2}{AI for LaTeX Code Generation}{6}{0}{2}
+\beamer@sectionintoc {3}{AI-Powered Research Assistance}{11}{0}{3}
+\beamer@sectionintoc {4}{Writing Enhancement with AI}{15}{0}{4}
+\beamer@sectionintoc {5}{Practical AI Workflows}{19}{0}{5}
+\beamer@sectionintoc {6}{Ethics and Best Practices}{23}{0}{6}
+\beamer@sectionintoc {7}{Hands-On Final Project}{28}{0}{7}
+\beamer@sectionintoc {8}{Resources and Next Steps}{34}{0}{8}

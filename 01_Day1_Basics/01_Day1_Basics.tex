@@ -1,0 +1,739 @@
+% Day 1: Introduction to LaTeX Basics - COMPLETE FIXED VERSION
+% SUZA Workshop - Scientific Writing with LaTeX & AI
+% ALL code blocks cleaned, all errors fixed
+
+\documentclass[aspectratio=169]{beamer}
+
+% Theme and Color Settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamercolor{structure}{fg=blue!70!black}
+\setbeamercolor{frametitle}{bg=blue!10,fg=blue!70!black}
+\usefonttheme{serif}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% Code Listing Settings - FIXED
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	frame=single,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	escapechar=@,
+	xleftmargin=0pt,
+	framexleftmargin=0pt
+}
+
+\usepackage{listings}
+\lstset{escapechar=@, basicstyle=\ttfamily\small}
+
+% Header and Footer Configuration
+\setbeamertemplate{headline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.02\paperwidth,ht=2.5ex,dp=1.125ex]{section in head/foot}%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.15\paperwidth,ht=2.5ex,dp=1.125ex,left]{section in head/foot}%
+			\includegraphics[height=2ex]{../resources/suza_logo.png}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.83\paperwidth,ht=2.5ex,dp=1.125ex,center]{section in head/foot}%
+			\scriptsize State University of Zanzibar (SUZA) | Scientific Writing with LaTeX \& AI
+		\end{beamercolorbox}%
+	}
+	\vskip2pt
+	{\color{blue!70!black}\hrule height 0.5pt}
+}
+
+\setbeamertemplate{footline}{
+	{\color{blue!70!black}\hrule height 0.5pt}
+	\vskip2pt
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,left,leftskip=1em]{author in head/foot}%
+			\scriptsize Masoud Hamad  |  massoud.hamad@suza.ac.tz  |  Department of CS\&IT, SCCMS
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,right]{date in head/foot}%
+			\scriptsize\insertshortdate
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.1\paperwidth,ht=2.5ex,dp=1.125ex,right,rightskip=1em]{page number in head/foot}%
+			\insertframenumber{} / \inserttotalframenumber
+		\end{beamercolorbox}
+	}%
+	\vskip2pt
+}
+
+\title{Day 1: Introduction to LaTeX Basics}
+\subtitle{Document Structure, Formatting \& Essential Commands}
+\author{Masoud Hamad}
+\institute{Department of Computer Science \& Information Technology\\
+	School of Computing, Communication and Media Studies\\
+	State University of Zanzibar}
+\date{\today}
+
+\begin{document}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{Today's Agenda}
+		\tableofcontents
+	\end{frame}
+	
+	%==============================================================================
+	\section{What is LaTeX?}
+	
+	\begin{frame}{What is LaTeX?}
+		\begin{block}{Definition}
+			LaTeX is a document preparation system for high-quality typesetting, widely used for scientific and technical documents.
+		\end{block}
+		
+		\vspace{1em}
+		
+		\textbf{Why Use LaTeX?}
+		\begin{itemize}
+			\item Professional typesetting, especially for mathematical formulas
+			\item Consistent formatting throughout documents
+			\item Easy management of references and bibliographies
+			\item Industry standard for academic publishing
+			\item Free and cross-platform
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{LaTeX vs. Word Processors}
+		\begin{columns}
+			\begin{column}{0.48\textwidth}
+				\textbf{Traditional Word Processors}
+				\begin{itemize}
+					\item WYSIWYG interface
+					\item Click-and-drag formatting
+					\item Good for simple documents
+					\item Formatting can be inconsistent
+				\end{itemize}
+			\end{column}
+			
+			\begin{column}{0.48\textwidth}
+				\textbf{LaTeX}
+				\begin{itemize}
+					\item Code-based formatting
+					\item Excellent for complex documents
+					\item Consistent professional output
+					\item Steep learning curve
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Getting Started}
+	
+	\begin{frame}{Installing LaTeX}
+		\textbf{LaTeX Distributions:}
+		\begin{itemize}
+			\item \textbf{Windows:} MiKTeX or TeX Live
+			\item \textbf{macOS:} MacTeX
+			\item \textbf{Linux:} TeX Live (via package manager)
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Online Options (No Installation):}
+		\begin{itemize}
+			\item \textbf{Overleaf:} \url{https://www.overleaf.com}
+			\item \textbf{Papeeria:} \url{https://papeeria.com}
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\begin{alertblock}{Recommendation}
+			For today's workshop, we'll use Overleaf for quick access!
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Your First LaTeX Document}
+		\textbf{Basic Structure:}
+		
+		\begin{lstlisting}
+			@\textbackslash@documentclass{article}
+			
+			@\textbackslash@begin{document}
+			Hello, World!
+			@\textbackslash@end{document}
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		Three essential components:
+		\begin{enumerate}
+			\item \texttt{\textbackslash documentclass\{article\}} - Document type
+			\item \texttt{\textbackslash begin\{document\}} - Content starts
+			\item \texttt{\textbackslash end\{document\}} - Content ends
+		\end{enumerate}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Document Structure}
+	
+	\begin{frame}[fragile]{Document Classes}
+		Choose the right document class:
+		
+		\begin{lstlisting}
+			@\textbackslash@documentclass{article}   % Papers
+			@\textbackslash@documentclass{report}    % Reports
+			@\textbackslash@documentclass{book}      % Books
+			@\textbackslash@documentclass{beamer}    % Slides
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Common Options:}
+		\begin{lstlisting}
+			@\textbackslash@documentclass[12pt, a4paper]{article}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Preamble: Loading Packages}
+		The preamble comes before \texttt{\textbackslash begin\{document\}}:
+		
+		\begin{lstlisting}
+			@\textbackslash@documentclass{article}
+			
+			% Essential packages
+			@\textbackslash@usepackage[utf8]{inputenc}
+			@\textbackslash@usepackage{graphicx}
+			@\textbackslash@usepackage{amsmath}
+			
+			@\textbackslash@title{My Document}
+			@\textbackslash@author{Your Name}
+			
+			@\textbackslash@begin{document}
+			% Content here
+			@\textbackslash@end{document}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Title, Author, and Date}
+		\begin{lstlisting}
+			@\textbackslash@documentclass{article}
+			
+			@\textbackslash@title{Workshop Title}
+			@\textbackslash@author{Your Name}
+			@\textbackslash@date{@\textbackslash@today}
+			
+			@\textbackslash@begin{document}
+			@\textbackslash@maketitle
+			@\textbackslash@end{document}
+		\end{lstlisting}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Text Formatting}
+	
+\begin{frame}[fragile]{Basic Text Formatting}
+	\begin{columns}
+		\begin{column}{0.48\textwidth}
+			\textbf{Code:}
+			\begin{lstlisting}
+				@\textbackslash@textbf{Bold}
+				@\textbackslash@textit{Italic}
+				@\textbackslash@underline{Under}
+				@\textbackslash@texttt{Mono}
+			\end{lstlisting}
+		\end{column}
+		\begin{column}{0.2\textwidth}
+			\textbf{Output:}
+			\begin{itemize}
+				\item \textbf{Bold text}
+				\item \textit{Italic text}
+				\item \underline{Underlined}
+				\item \texttt{Monospace}
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+	
+	\begin{frame}[fragile]{Sections and Subsections}
+		\begin{lstlisting}
+			@\textbackslash@section{Introduction}
+			This is the introduction.
+			
+			@\textbackslash@subsection{Background}
+			Some background info.
+			
+			@\textbackslash@subsubsection{Details}
+			More detail here.
+			
+			@\textbackslash@section{Methods}
+			Methodology here...
+		\end{lstlisting}
+		
+		\vspace{0.5em}
+		
+		LaTeX automatically numbers and formats sections.
+	\end{frame}
+	
+	\begin{frame}[fragile]{Lists: Itemize and Enumerate}
+		\begin{columns}[t]
+			\begin{column}{0.48\textwidth}
+				\textbf{Bulleted List:}
+				\begin{lstlisting}
+					@\textbackslash@begin{itemize}
+					@\textbackslash@item First
+					@\textbackslash@item Second
+					@\textbackslash@item Third
+					@\textbackslash@end{itemize}
+				\end{lstlisting}
+			\end{column}
+			
+			\begin{column}{0.48\textwidth}
+				\textbf{Numbered List:}
+				\begin{lstlisting}
+					@\textbackslash@begin{enumerate}
+					@\textbackslash@item First
+					@\textbackslash@item Second
+					@\textbackslash@item Third
+					@\textbackslash@end{enumerate}
+				\end{lstlisting}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Description Lists}
+		\begin{lstlisting}
+			@\textbackslash@begin{description}
+			@\textbackslash@item[Term 1] Definition of term 1
+			@\textbackslash@item[Term 2] Definition of term 2
+			@\textbackslash@item[Term 3] Definition of term 3
+			@\textbackslash@end{description}
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Output:}
+		\begin{description}
+			\item[LaTeX] Document preparation system
+			\item[BibTeX] Bibliography management tool
+			\item[Beamer] Presentation package
+		\end{description}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Mathematical Formulas}
+	
+	\begin{frame}[fragile]{Inline vs. Display Math}
+		\begin{block}{Inline Math}
+			Use \texttt{\$...\$} for math within text:
+			\begin{lstlisting}
+				The equation $E = mc^2$ is famous.
+			\end{lstlisting}
+			Output: The equation $E = mc^2$ is famous.
+		\end{block}
+		
+		\vspace{1em}
+		
+		\begin{block}{Display Math}
+			\begin{lstlisting}
+				@\textbackslash@begin{equation}
+				E = mc^2
+				@\textbackslash@end{equation}
+			\end{lstlisting}
+			Output:
+			\begin{equation}
+				E = mc^2
+			\end{equation}
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Common Math Symbols}
+		\begin{columns}[t]
+			\begin{column}{0.48\textwidth}
+				\textbf{Greek Letters:}
+				\begin{lstlisting}
+					$@\textbackslash@alpha, @\textbackslash@beta, @\textbackslash@gamma$
+					$@\textbackslash@Delta, @\textbackslash@theta, @\textbackslash@pi$
+				\end{lstlisting}
+				Output: $\alpha, \beta, \gamma, \Delta, \theta, \pi$
+			\end{column}
+			
+			\begin{column}{0.48\textwidth}
+				\textbf{Operators:}
+				\begin{lstlisting}
+					$@\textbackslash@sum, @\textbackslash@int, @\textbackslash@prod$
+					$@\textbackslash@lim, @\textbackslash@sqrt{x}$
+				\end{lstlisting}
+				Output: $\sum, \int, \prod, \lim, \sqrt{x}$
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Fractions and Subscripts}
+		\begin{lstlisting}
+			$@\textbackslash@frac{numerator}{denominator}$
+			
+			$x^2$  % Superscript
+			
+			$x_i$  % Subscript
+			
+			$x_i^2$  % Both
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Examples:}
+		\begin{itemize}
+			\item Fraction: $\frac{a+b}{c+d}$
+			\item Power: $x^2 + y^2 = r^2$
+			\item Subscript: $x_1, x_2, \ldots, x_n$
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Summation and Integration}
+		\begin{lstlisting}
+			$@\textbackslash@sum_{i=1}^{n} x_i$
+			
+			$@\textbackslash@int_0^1 f(x) dx$
+			
+			$@\textbackslash@prod_{k=1}^{n} a_k$
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Display versions:}
+		\begin{itemize}
+			\item $\displaystyle\sum_{i=1}^{n} x_i$
+			\item $\displaystyle\int_0^1 f(x) dx$
+			\item $\displaystyle\prod_{k=1}^{n} a_k$
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Complex Equations}
+		\begin{lstlisting}
+			@\textbackslash@begin{equation}
+			f(x) = @\textbackslash@int_{-@\textbackslash@infty}^{@\textbackslash@infty}
+			@\textbackslash@hat{f}(@\textbackslash@xi) e^{2@\textbackslash@pi i @\textbackslash@xi x} d@\textbackslash@xi
+			@\textbackslash@end{equation}
+		\end{lstlisting}
+		
+		\vspace{0.5em}
+		
+		\textbf{Output:}
+		\begin{equation}
+			f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2\pi i \xi x} d\xi
+		\end{equation}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Multi-line Equations}
+		\begin{lstlisting}
+			@\textbackslash@begin{align}
+			x &= a + b \\
+			y &= c + d \\
+			z &= e + f
+			@\textbackslash@end{align}
+		\end{lstlisting}
+		
+		\textbf{Output:}
+		\begin{align}
+			x &= a + b \\
+			y &= c + d \\
+			z &= e + f
+		\end{align}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Tables and Figures}
+	
+	\begin{frame}[fragile]{Creating Tables}
+		\begin{lstlisting}
+			@\textbackslash@begin{table}[h]
+			@\textbackslash@centering
+			@\textbackslash@caption{Sample Data}
+			@\textbackslash@begin{tabular}{|c|c|c|}
+			@\textbackslash@hline
+			Name & Age & Grade \\
+			@\textbackslash@hline
+			Alice & 22 & A \\
+			Bob & 23 & B \\
+			@\textbackslash@hline
+			@\textbackslash@end{tabular}
+			@\textbackslash@end{table}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Table Alignment}
+		\begin{lstlisting}
+			@\textbackslash@begin{tabular}{lcc}
+			% l = left, c = center, r = right
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\begin{table}
+			\centering
+			\begin{tabular}{lcc}
+				\hline
+				\textbf{Name} & \textbf{Age} & \textbf{Grade} \\
+				\hline
+				Alice & 22 & A \\
+				Bob & 23 & B+ \\
+				Charlie & 21 & A- \\
+				\hline
+			\end{tabular}
+		\end{table}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Including Figures}
+		\begin{lstlisting}
+			@\textbackslash@begin{figure}[h]
+			@\textbackslash@centering
+			@\textbackslash@includegraphics[width=0.5@\textbackslash@textwidth]{image.png}
+			@\textbackslash@caption{Figure caption}
+			@\textbackslash@label{fig:sample}
+			@\textbackslash@end{figure}
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Size Options:}
+		\begin{itemize}
+			\item \texttt{width=0.5\textbackslash textwidth}
+			\item \texttt{height=5cm}
+			\item \texttt{scale=0.8}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Figure Placement}
+		\begin{lstlisting}
+			@\textbackslash@begin{figure}[htbp]
+			% h = here
+			% t = top of page
+			% b = bottom of page
+			% p = separate page
+			% ! = override LaTeX rules
+			@\textbackslash@end{figure}
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\begin{alertblock}{Tip}
+			Use \texttt{[!h]} to force placement approximately here.
+		\end{alertblock}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Cross-References}
+	
+	\begin{frame}[fragile]{Labels and References}
+		\begin{lstlisting}
+			@\textbackslash@section{Introduction}
+			@\textbackslash@label{sec:intro}
+			
+			See Section~@\textbackslash@ref{sec:intro} for details.
+			
+			@\textbackslash@begin{equation}
+			E = mc^2
+			@\textbackslash@label{eq:einstein}
+			@\textbackslash@end{equation}
+			
+			Equation~@\textbackslash@ref{eq:einstein} shows...
+		\end{lstlisting}
+		
+		\vspace{0.5em}
+		
+		\textbf{Note:} Use \texttt{\textasciitilde} for non-breaking space before ref.
+	\end{frame}
+	
+	\begin{frame}[fragile]{Label Naming Convention}
+		\textbf{Good Practice:}
+		
+		\begin{lstlisting}
+			@\textbackslash@label{sec:introduction}  % Sections
+			@\textbackslash@label{fig:results}       % Figures
+			@\textbackslash@label{tab:data}          % Tables
+			@\textbackslash@label{eq:quadratic}      % Equations
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Benefits:}
+		\begin{itemize}
+			\item Easy to remember
+			\item Avoid naming conflicts
+			\item Clear documentation
+			\item Better organization
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Hands-On Practice}
+	
+	\begin{frame}{Practice Exercise 1}
+		\textbf{Create your first document:}
+		
+		\begin{enumerate}
+			\item Open Overleaf, create new project
+			\item Add title, author, date
+			\item Create 3 sections
+			\item Add one bulleted list
+			\item Include one equation
+			\item Compile and check PDF
+		\end{enumerate}
+		
+		\vspace{1em}
+		
+		\textbf{Time: 15 minutes}
+		
+		\vspace{0.5em}
+		
+		\begin{alertblock}{Tip}
+			Start simple! You can always add more later.
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{Practice Exercise 2}
+		\textbf{Advanced formatting:}
+		
+		\begin{enumerate}
+			\item Create a 3x4 table with headers
+			\item Add a figure (use placeholder or example-image)
+			\item Label your sections, table, and figure
+			\item Add cross-references in text
+			\item Compile successfully
+		\end{enumerate}
+		
+		\vspace{1em}
+		
+		\textbf{Time: 15 minutes}
+		
+		\vspace{0.5em}
+		
+		\begin{block}{Help Available}
+			Raise your hand if you need assistance!
+		\end{block}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Troubleshooting}
+	
+	\begin{frame}{Common Errors}
+		\begin{enumerate}
+			\item \textbf{Missing \$ inserted}
+			\begin{itemize}
+				\item Forgot to close math mode with \$
+				\item Special characters need escaping
+			\end{itemize}
+			
+			\item \textbf{Undefined control sequence}
+			\begin{itemize}
+				\item Misspelled command
+				\item Missing package in preamble
+			\end{itemize}
+			
+			\item \textbf{File not found}
+			\begin{itemize}
+				\item Check image path and filename
+				\item Ensure file is uploaded to project
+			\end{itemize}
+		\end{enumerate}
+	\end{frame}
+	
+	\begin{frame}{Debugging Tips}
+		\textbf{When compilation fails:}
+		
+		\begin{enumerate}
+			\item Read error message carefully
+			\item Check line number indicated
+			\item Look for:
+			\begin{itemize}
+				\item Unclosed braces \{\}
+				\item Missing \texttt{\textbackslash end\{...\}}
+				\item Special characters without backslash
+			\end{itemize}
+			\item Comment out recent changes
+			\item Search error online
+		\end{enumerate}
+		
+		\vspace{1em}
+		
+		\begin{block}{Pro Tip}
+			Compile frequently! Easier to find errors when you know what changed.
+		\end{block}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Resources}
+	
+	\begin{frame}{Learning Resources}
+		\textbf{Documentation \& Tutorials:}
+		\begin{itemize}
+			\item Overleaf Learn: \url{https://www.overleaf.com/learn}
+			\item LaTeX Wikibook: \url{https://en.wikibooks.org/wiki/LaTeX}
+			\item CTAN: \url{https://www.ctan.org}
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{Q\&A Communities:}
+		\begin{itemize}
+			\item TeX Stack Exchange: \url{https://tex.stackexchange.com}
+			\item r/LaTeX: \url{https://reddit.com/r/LaTeX}
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{Tools:}
+		\begin{itemize}
+			\item Detexify (draw symbols): \url{http://detexify.kirelabs.org}
+			\item Tables Generator: \url{https://www.tablesgenerator.com}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Day 2 Preview}
+		\textbf{Tomorrow we'll cover:}
+		
+		\begin{itemize}
+			\item Bibliography management with BibTeX
+			\item Advanced document structuring
+			\item Custom commands and environments
+			\item Multi-file projects
+			\item Professional reports and theses
+			\item Beamer presentations
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\begin{block}{Optional Homework}
+			Create a 2-page document about your research topic with sections, equations, a table, and a figure.
+		\end{block}
+	\end{frame}
+	
+	%==============================================================================
+	\begin{frame}
+		\begin{center}
+			\Huge\textbf{Thank You!}
+			
+			\vspace{2em}
+			
+			\Large Questions?
+			
+			\vspace{1em}
+			
+			\normalsize
+			massoud.hamad@suza.ac.tz
+			
+			\vspace{2em}
+			
+			\large
+			See you tomorrow for Day 2!
+		\end{center}
+	\end{frame}
+	
+\end{document}

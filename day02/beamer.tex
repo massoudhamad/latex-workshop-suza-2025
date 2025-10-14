@@ -1,0 +1,76 @@
+\documentclass{beamer}
+
+% === HEADER (top line with logo and section name) ===
+\setbeamertemplate{headline}{
+  \vskip2pt
+  \makebox[0.98\paperwidth]{
+    \includegraphics[height=0.8cm]{logo.png}\hfill
+    \color{suza-blue}\insertsectionhead
+  }\vskip2pt
+  \color{suza-gold}\rule{\paperwidth}{1pt}
+}
+
+% === FOOTER (bottom line with name, email, and page number) ===
+\setbeamertemplate{footline}{
+  \color{suza-blue}\rule{\paperwidth}{0.5pt}
+  \vspace{1pt}
+  \makebox[0.98\paperwidth]{%
+    \color{gray}\scriptsize
+    Masoud Hamad — massoud.hamad@suza.ac.tz — Dept. of CS\&IT
+    \hfill
+    \insertframenumber/\inserttotalframenumber
+  }\vspace{3pt}
+}
+
+\setbeamertemplate{navigation symbols}{} % remove icons
+
+
+\usetheme{Madrid} % You can change to Madrid, Warsaw, CambridgeUS, etc.
+
+\title{My First Beamer Presentation}
+\author{Masoud Hamad}
+\institute{State University of Zanzibar (SUZA)}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}{Introduction}
+  Welcome to my first Beamer presentation!
+  \begin{itemize}
+    \item Beamer is used for creating slides in LaTeX.
+    \item It supports text, lists, images, and math.
+    \item Easy to structure and professional.
+  \end{itemize}
+\end{frame}
+
+\section{Example Slide}
+\begin{frame}{Text Formatting}
+  You can make text \textbf{bold}, \textit{italic}, or \texttt{monospace}.
+  \vspace{1em}
+
+  Example list:
+  \begin{enumerate}
+    \item First point
+    \item Second point
+    \item Third point
+  \end{enumerate}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}{Conclusion}
+  \begin{block}{Summary}
+    Beamer is powerful, flexible, and perfect for academic presentations.
+  \end{block}
+  Thank you!
+\end{frame}
+
+\end{document}

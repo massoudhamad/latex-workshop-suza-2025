@@ -1,0 +1,25 @@
+\frametitle{Workflow 4: Creating Diagrams}
+\textbf{TikZ Code Generation:}
+		
+		Prompt: "TikZ neural network: 3 inputs, 2 hidden layers (4 nodes), 2 outputs"
+		
+		\vspace{0.3em}
+		
+		\begin{lstlisting}[language=TeX,basicstyle=\ttfamily\tiny]
+			\begin{tikzpicture}[
+				neuron/.style={circle,draw,minimum size=0.8cm}]
+				
+				% Input layer
+				\foreach \i in {1,2,3}
+				\node[neuron] (I\i) at (0,-\i*1.5) {$x_\i$};
+				
+				% Hidden layer 1
+				\foreach \i in {1,...,4}
+				\node[neuron] (H1\i) at (3,-\i*1.2+0.5) {};
+				
+				% Connections
+				\foreach \i in {1,2,3}
+				\foreach \j in {1,...,4}
+				\draw (I\i) -- (H1\j);
+			\end{tikzpicture}
+		\end{lstlisting}

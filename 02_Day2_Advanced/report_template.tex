@@ -1,0 +1,584 @@
+% Academic Report Template
+% SUZA - Scientific Writing Workshop
+% Compile with: pdflatex -> bibtex -> pdflatex -> pdflatex
+
+\documentclass[12pt, a4paper]{report}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[top=1in, bottom=1in, left=1.25in, right=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{subcaption}
+
+% Line spacing
+\onehalfspacing
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Chapter title formatting
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+
+% Hyperlink setup
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	citecolor=blue,
+	urlcolor=blue,
+	pdfauthor={Your Name},
+	pdftitle={Research Report Title}
+}
+
+% Custom commands
+\newcommand{\suza}{State University of Zanzibar (SUZA)}
+\newcommand{\dept}{Department of Computer Science \& Information Technology}
+
+%==============================================================================
+\begin{document}
+	
+	%==============================================================================
+	% TITLE PAGE
+	%==============================================================================
+	\begin{titlepage}
+		\centering
+		\vspace*{1cm}
+		
+		% University logo (add your logo file)
+		% \includegraphics[width=0.3\textwidth]{../resources/suza_logo.png}\\[1cm]
+		
+		{\Large \suza{}}\\[0.5cm]
+		{\Large \dept{}}\\[2cm]
+		
+		\rule{\textwidth}{1.5pt}\\[0.5cm]
+		{\huge\bfseries Research Report Title}\\[0.5cm]
+		{\large Subtitle if Applicable}\\[0.2cm]
+		\rule{\textwidth}{1.5pt}\\[2cm]
+		
+		{\Large
+			\textbf{Author Name}\\[0.3cm]
+			Registration Number: SUZA/2024/XXX\\[2cm]
+		}
+		
+		{\large
+			\textbf{Supervisor:}\\
+			Dr. Supervisor Name\\
+			\dept{}\\[2cm]
+		}
+		
+		\vfill
+		
+		{\large A report submitted in partial fulfillment of the requirements for\\
+			the degree of Bachelor/Master of Science in Computer Science}\\[1cm]
+		
+		{\large \today}
+		
+	\end{titlepage}
+	
+	%==============================================================================
+	% DECLARATION
+	%==============================================================================
+	\chapter*{Declaration}
+	\addcontentsline{toc}{chapter}{Declaration}
+	
+	I, [Your Full Name], declare that this research report is my original work and has not been presented for a degree in any other university. All sources of information have been duly acknowledged.
+	
+	\vspace{2cm}
+	
+	\noindent
+	\begin{tabular}{@{}ll}
+		Signature: & \makebox[3in]{\hrulefill} \\[1cm]
+		Date: & \makebox[3in]{\hrulefill} \\
+	\end{tabular}
+	
+	\vspace{2cm}
+	
+	\noindent
+	\textbf{Supervisor's Certification}\\[0.5cm]
+	This is to certify that this research report has been submitted with my approval as the university supervisor.
+	
+	\vspace{2cm}
+	
+	\noindent
+	\begin{tabular}{@{}ll}
+		Supervisor Name: & Dr. [Supervisor Name] \\[0.5cm]
+		Signature: & \makebox[3in]{\hrulefill} \\[1cm]
+		Date: & \makebox[3in]{\hrulefill} \\
+	\end{tabular}
+	
+	%==============================================================================
+	% DEDICATION (Optional)
+	%==============================================================================
+	\chapter*{Dedication}
+	\addcontentsline{toc}{chapter}{Dedication}
+	
+	\vspace{2cm}
+	\begin{center}
+		\textit{To my family, friends, and mentors\\
+			who have supported me throughout this journey.}
+	\end{center}
+	
+	%==============================================================================
+	% ACKNOWLEDGMENTS
+	%==============================================================================
+	\chapter*{Acknowledgments}
+	\addcontentsline{toc}{chapter}{Acknowledgments}
+	
+	I would like to express my sincere gratitude to my supervisor, Dr. [Supervisor Name], for their invaluable guidance, patience, and support throughout this research project. Their expertise and insights have been instrumental in shaping this work.
+	
+	I am also grateful to the \dept{} at \suza{} for providing the resources and facilities necessary to conduct this research. Special thanks to [specific people or departments] for their technical assistance and support.
+	
+	I acknowledge [Funding body, if any] for the financial support that made this research possible.
+	
+	Finally, I thank my family and friends for their unwavering encouragement and understanding during the course of this project.
+	
+	%==============================================================================
+	% ABSTRACT
+	%==============================================================================
+	\chapter*{Abstract}
+	\addcontentsline{toc}{chapter}{Abstract}
+	
+	This abstract provides a concise summary of the entire research report in approximately 250-300 words. It should include:
+	
+	\textbf{Background:} Brief context of the research problem and its significance.
+	
+	\textbf{Objectives:} Clear statement of what the research aims to achieve.
+	
+	\textbf{Methodology:} Brief description of the approach and methods used.
+	
+	\textbf{Results:} Summary of key findings and outcomes.
+	
+	\textbf{Conclusions:} Main conclusions and implications of the research.
+	
+	\textbf{Keywords:} machine learning, data analysis, optimization, Zanzibar, [add relevant terms]
+	
+	%==============================================================================
+	% TABLE OF CONTENTS
+	%==============================================================================
+	\tableofcontents
+	\listoffigures
+	\listoftables
+	
+	%==============================================================================
+	% LIST OF ABBREVIATIONS (Optional)
+	%==============================================================================
+	\chapter*{List of Abbreviations}
+	\addcontentsline{toc}{chapter}{List of Abbreviations}
+	
+	\begin{tabular}{ll}
+		AI & Artificial Intelligence \\
+		API & Application Programming Interface \\
+		CSV & Comma-Separated Values \\
+		HTML & HyperText Markup Language \\
+		IoT & Internet of Things \\
+		ML & Machine Learning \\
+		SUZA & State University of Zanzibar \\
+		SQL & Structured Query Language \\
+		UI & User Interface \\
+		UX & User Experience \\
+	\end{tabular}
+	
+	%==============================================================================
+	% MAIN CONTENT
+	%==============================================================================
+	
+	\chapter{Introduction}
+	\label{chap:introduction}
+	
+	\section{Background}
+	\label{sec:background}
+	
+	Provide context for your research. Explain the broader field and why this topic is important. Use citations to support your claims \citep{smith2023, jones2022}.
+	
+	The problem you're addressing should be clearly articulated, demonstrating its relevance to current challenges in your field. Consider the local context of Zanzibar and how your research contributes to regional development.
+	
+	\section{Problem Statement}
+	\label{sec:problem}
+	
+	Clearly define the specific problem your research addresses. What gap in knowledge or practice does this work fill? Why is solving this problem important?
+	
+	\section{Research Questions}
+	\label{sec:questions}
+	
+	State your main research question(s):
+	
+	\begin{enumerate}
+		\item Primary research question
+		\item Secondary research question
+		\item Additional research question (if applicable)
+	\end{enumerate}
+	
+	\section{Objectives}
+	\label{sec:objectives}
+	
+	List specific, measurable objectives:
+	
+	\begin{itemize}
+		\item \textbf{General Objective:} The overarching goal of the research
+		\item \textbf{Specific Objectives:}
+		\begin{enumerate}
+			\item First specific objective
+			\item Second specific objective
+			\item Third specific objective
+		\end{enumerate}
+	\end{itemize}
+	
+	\section{Significance of the Study}
+	\label{sec:significance}
+	
+	Explain how your research contributes to:
+	\begin{itemize}
+		\item Theoretical understanding
+		\item Practical applications
+		\item Policy implications
+		\item Community development
+		\item Future research directions
+	\end{itemize}
+	
+	\section{Scope and Limitations}
+	\label{sec:scope}
+	
+	Define the boundaries of your research and acknowledge any limitations:
+	
+	\textbf{Scope:} What your research covers and does not cover.
+	
+	\textbf{Limitations:} Constraints that affected your research (time, resources, data availability, etc.).
+	
+	\section{Organization of the Report}
+	\label{sec:organization}
+	
+	This report is organized as follows: Chapter~\ref{chap:literature} reviews relevant literature. Chapter~\ref{chap:methodology} describes the research methodology. Chapter~\ref{chap:results} presents the results. Chapter~\ref{chap:discussion} discusses findings. Chapter~\ref{chap:conclusion} concludes the report.
+	
+	%==============================================================================
+	\chapter{Literature Review}
+	\label{chap:literature}
+	
+	\section{Introduction}
+	
+	Introduce the key themes and concepts from the literature that are relevant to your research.
+	
+	\section{Theoretical Framework}
+	\label{sec:theory}
+	
+	Present the theoretical foundations of your research. Discuss relevant theories, models, or frameworks that guide your work.
+	
+	For example, if working with machine learning, you might discuss:
+	
+	\begin{equation}
+		\text{Loss} = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2
+		\label{eq:mse}
+	\end{equation}
+	
+	where $y_i$ represents actual values and $\hat{y}_i$ represents predicted values.
+	
+	\section{Review of Related Work}
+	\label{sec:related}
+	
+	Critically analyze previous research in your area. Group studies by themes or methodologies.
+	
+	\subsection{Theme 1: [Specific Topic]}
+	
+	Discuss studies related to this theme, comparing their approaches, findings, and limitations \citep{brown2021, taylor2020}.
+	
+	\subsection{Theme 2: [Another Topic]}
+	
+	Continue organizing the literature thematically.
+	
+	\section{Research Gaps}
+	\label{sec:gaps}
+	
+	Identify gaps in the existing literature that your research will address. This justifies the need for your study.
+	
+	\section{Summary}
+	
+	Synthesize the literature review, connecting it back to your research questions and objectives.
+	
+	%==============================================================================
+	\chapter{Methodology}
+	\label{chap:methodology}
+	
+	\section{Research Design}
+	\label{sec:design}
+	
+	Describe your overall research approach (quantitative, qualitative, or mixed methods). Justify why this approach is appropriate for your research questions.
+	
+	\section{Study Area/Population}
+	\label{sec:population}
+	
+	Describe where your research was conducted and who/what was studied.
+	
+	\section{Data Collection}
+	\label{sec:data_collection}
+	
+	\subsection{Sampling Method}
+	
+	Explain how you selected your sample (random, stratified, convenience, etc.) and why this method was chosen.
+	
+	\subsection{Sample Size}
+	
+	Justify your sample size. If using statistical power analysis, show the calculations:
+	
+	\begin{equation}
+		n = \frac{Z^2 \cdot p(1-p)}{E^2}
+		\label{eq:sample_size}
+	\end{equation}
+	
+	where $Z$ is the Z-score, $p$ is the estimated proportion, and $E$ is the margin of error.
+	
+	\subsection{Data Collection Instruments}
+	
+	Describe the tools used (surveys, interviews, sensors, software, etc.). Include examples in appendices if needed.
+	
+	\subsection{Data Collection Procedure}
+	
+	Provide a step-by-step description of how data was collected. Be detailed enough that someone could replicate your study.
+	
+	\section{Data Analysis}
+	\label{sec:analysis}
+	
+	Explain the analytical methods used to process and analyze your data.
+	
+	\subsection{Statistical Methods}
+	
+	If using statistical analysis, specify the tests and software used:
+	
+	\begin{itemize}
+		\item Descriptive statistics (mean, median, standard deviation)
+		\item Inferential statistics (t-tests, ANOVA, regression)
+		\item Software: R, Python, SPSS, etc.
+	\end{itemize}
+	
+	\subsection{Qualitative Analysis}
+	
+	If applicable, describe thematic analysis or other qualitative methods.
+	
+	\section{Ethical Considerations}
+	\label{sec:ethics}
+	
+	Discuss ethical approvals obtained, informed consent procedures, data privacy measures, and any other ethical considerations relevant to your research.
+	
+	\section{Validity and Reliability}
+	\label{sec:validity}
+	
+	Explain how you ensured the validity and reliability of your research methods and findings.
+	
+	%==============================================================================
+	\chapter{Results and Findings}
+	\label{chap:results}
+	
+	\section{Introduction}
+	
+	Introduce what will be presented in this chapter.
+	
+	\section{Descriptive Statistics}
+	\label{sec:descriptive}
+	
+	Present basic descriptive statistics about your data. Use tables effectively:
+	
+	\begin{table}[h]
+		\centering
+		\caption{Summary statistics of key variables}
+		\label{tab:summary}
+		\begin{tabular}{lcccc}
+			\toprule
+			\textbf{Variable} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Min} & \textbf{Max} \\
+			\midrule
+			Variable 1 & 45.3 & 12.8 & 20.0 & 75.0 \\
+			Variable 2 & 67.9 & 15.2 & 35.0 & 95.0 \\
+			Variable 3 & 82.1 & 8.4 & 65.0 & 98.0 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	Table~\ref{tab:summary} shows the descriptive statistics for the main variables in this study.
+	
+	\section{Main Findings}
+	\label{sec:findings}
+	
+	Present your key findings organized by research question or objective.
+	
+	\subsection{Finding 1: [Research Question 1]}
+	
+	Present data, analysis, and results related to your first research question. Use figures to visualize results:
+	
+	\begin{figure}[h]
+		\centering
+		\fbox{\parbox{0.7\textwidth}{\centering\vspace{2cm}
+				[Figure Placeholder]\\
+				\vspace{1cm}
+				Insert your chart/graph here
+				\vspace{2cm}}}
+		\caption{Visualization of key finding}
+		\label{fig:finding1}
+	\end{figure}
+	
+	As shown in Figure~\ref{fig:finding1}, there is a clear trend...
+	
+	\subsection{Finding 2: [Research Question 2]}
+	
+	Continue presenting findings systematically.
+	
+	\section{Statistical Analysis Results}
+	\label{sec:statistical}
+	
+	If you performed statistical tests, report them here with appropriate tables:
+	
+	\begin{table}[h]
+		\centering
+		\caption{Regression analysis results}
+		\label{tab:regression}
+		\begin{tabular}{lcccc}
+			\toprule
+			\textbf{Predictor} & \textbf{Coefficient} & \textbf{Std Error} & \textbf{t-value} & \textbf{p-value} \\
+			\midrule
+			Intercept & 12.45 & 2.31 & 5.39 & <0.001 \\
+			Variable 1 & 0.67 & 0.15 & 4.47 & <0.001 \\
+			Variable 2 & -0.23 & 0.09 & -2.56 & 0.012 \\
+			\bottomrule
+		\end{tabular}
+	\end{table}
+	
+	The regression analysis in Table~\ref{tab:regression} indicates...
+	
+	\section{Summary of Results}
+	
+	Summarize the key findings without interpretation (save that for the discussion chapter).
+	
+	%==============================================================================
+	\chapter{Discussion}
+	\label{chap:discussion}
+	
+	\section{Introduction}
+	
+	Restate your research objectives and preview the discussion structure.
+	
+	\section{Interpretation of Findings}
+	\label{sec:interpretation}
+	
+	\subsection{Finding 1 in Context}
+	
+	Interpret the first major finding in light of existing literature. How does it compare to previous studies \citep{wilson2022}? What does it mean theoretically and practically?
+	
+	\subsection{Finding 2 in Context}
+	
+	Continue interpreting each major finding.
+	
+	\section{Comparison with Previous Studies}
+	\label{sec:comparison}
+	
+	Explicitly compare your results with those from the literature review. Where do they agree? Where do they differ? Why might these differences exist?
+	
+	\section{Theoretical Implications}
+	\label{sec:implications}
+	
+	Discuss how your findings contribute to theoretical understanding in your field.
+	
+	\section{Practical Applications}
+	\label{sec:applications}
+	
+	Explain how your findings can be applied in practice. Who can benefit from this research and how?
+	
+	\section{Limitations of the Study}
+	\label{sec:limitations}
+	
+	Critically discuss the limitations of your research:
+	\begin{itemize}
+		\item Methodological limitations
+		\item Data limitations
+		\item Generalizability concerns
+		\item Resource constraints
+	\end{itemize}
+	
+	\section{Recommendations}
+	\label{sec:recommendations}
+	
+	\subsection{Recommendations for Practice}
+	
+	Based on your findings, what practical recommendations can you make?
+	
+	\subsection{Recommendations for Policy}
+	
+	If applicable, suggest policy implications of your research.
+	
+	\subsection{Recommendations for Future Research}
+	
+	Suggest directions for future research that build on your work or address its limitations.
+	
+	%==============================================================================
+	\chapter{Conclusion}
+	\label{chap:conclusion}
+	
+	\section{Summary of the Study}
+	
+	Briefly recap the research problem, objectives, methodology, and key findings without introducing new information.
+	
+	\section{Main Conclusions}
+	
+	State the main conclusions that can be drawn from your research. These should directly address your research questions.
+	
+	\section{Contribution to Knowledge}
+	
+	Explain how your research has contributed to the field and filled the gaps identified in the literature review.
+	
+	\section{Final Remarks}
+	
+	Conclude with thoughts on the broader significance of your work and its potential impact.
+	
+	%==============================================================================
+	% REFERENCES
+	%==============================================================================
+	\bibliographystyle{apalike}
+	\bibliography{references}
+	
+	%==============================================================================
+	% APPENDICES
+	%==============================================================================
+	\appendix
+	
+	\chapter{Research Instruments}
+	\label{app:instruments}
+	
+	Include copies of questionnaires, interview guides, or other data collection instruments.
+	
+	\section{Questionnaire}
+	
+	[Insert your questionnaire here]
+	
+	\section{Interview Guide}
+	
+	[Insert interview questions here]
+	
+	\chapter{Raw Data Tables}
+	\label{app:data}
+	
+	Include supplementary data tables that are too detailed for the main text but may be useful for reference.
+	
+	\chapter{Code Samples}
+	\label{app:code}
+	
+	If your research involved programming, include relevant code snippets or algorithms here.
+	
+	\begin{verbatim}
+		def calculate_mean(data):
+		"""Calculate the arithmetic mean of a dataset."""
+		return sum(data) / len(data)
+	\end{verbatim}
+	
+	\chapter{Additional Figures}
+	\label{app:figures}
+	
+	Include supplementary figures that support but are not essential to the main narrative.
+	
+	%==============================================================================
+\end{document}

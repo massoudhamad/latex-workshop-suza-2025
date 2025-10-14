@@ -1,0 +1,944 @@
+% Day 2: Advanced LaTeX Techniques - COMPLETE FIXED VERSION
+% SUZA Workshop - Scientific Writing with LaTeX & AI
+% All UTF-8 errors fixed, all lstlisting properly closed
+
+\documentclass[aspectratio=169]{beamer}
+
+% Theme and Color Settings
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamercolor{structure}{fg=blue!70!black}
+\setbeamercolor{frametitle}{bg=blue!10,fg=blue!70!black}
+\usefonttheme{serif}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+
+% Code Listing Settings - FIXED
+\lstset{
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{blue},
+	commentstyle=\color{gray},
+	stringstyle=\color{red},
+	frame=single,
+	breaklines=true,
+	numbers=left,
+	numberstyle=\tiny\color{gray},
+	escapechar=@,
+	xleftmargin=0pt,
+	framexleftmargin=0pt
+}
+
+% Header and Footer
+\setbeamertemplate{headline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.02\paperwidth,ht=2.5ex,dp=1.125ex]{section in head/foot}%
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.15\paperwidth,ht=2.5ex,dp=1.125ex,left]{section in head/foot}%
+			\includegraphics[height=2ex]{../resources/suza_logo.png}
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.83\paperwidth,ht=2.5ex,dp=1.125ex,center]{section in head/foot}%
+			\scriptsize State University of Zanzibar (SUZA) | Scientific Writing with LaTeX \& AI
+		\end{beamercolorbox}%
+	}
+	\vskip2pt
+	{\color{blue!70!black}\hrule height 0.5pt}
+}
+
+\setbeamertemplate{footline}{
+	{\color{blue!70!black}\hrule height 0.5pt}
+	\vskip2pt
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,left,leftskip=1em]{author in head/foot}%
+			\scriptsize Masoud Hamad  |  massoud.hamad@suza.ac.tz  |  Department of CS\&IT, SCCMS
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.125ex,right]{date in head/foot}%
+			\scriptsize\insertshortdate
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.1\paperwidth,ht=2.5ex,dp=1.125ex,right,rightskip=1em]{page number in head/foot}%
+			\insertframenumber{} / \inserttotalframenumber
+		\end{beamercolorbox}
+	}%
+	\vskip2pt
+}
+
+\title{Day 2: Advanced LaTeX Techniques}
+\subtitle{Bibliography Management, Reports, Theses \& Presentations}
+\author{Masoud Hamad}
+\institute{Department of Computer Science \& Information Technology\\
+	School of Computing, Communication and Media Studies\\
+	State University of Zanzibar}
+\date{\today}
+
+\begin{document}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}{Today's Agenda}
+		\tableofcontents
+	\end{frame}
+	
+	%==============================================================================
+	\section{Recap: Day 1 Essentials}
+	
+	\begin{frame}{Quick Review}
+		\textbf{Yesterday we covered:}
+		\begin{itemize}
+			\item Document structure and basic commands
+			\item Text formatting and sections
+			\item Mathematical equations
+			\item Tables and figures
+			\item Cross-references
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Today we advance to:}
+		\begin{itemize}
+			\item Professional bibliography management
+			\item Multi-file document organization
+			\item Academic reports and theses
+			\item Creating presentations with Beamer
+			\item Custom commands and packages
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Bibliography with BibTeX}
+	
+	\begin{frame}{Why BibTeX?}
+		\begin{block}{The Problem}
+			Managing citations manually is time-consuming and error-prone.
+		\end{block}
+		
+		\vspace{1em}
+		
+		\textbf{BibTeX Benefits:}
+		\begin{itemize}
+			\item Centralized reference database
+			\item Automatic formatting of citations
+			\item Easy switching between styles
+			\item Reuse references across documents
+			\item Integration with reference managers
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Creating a .bib File}
+		Create \texttt{references.bib}:
+		
+		\begin{lstlisting}
+			@article{einstein1905,
+				author  = {Albert Einstein},
+				title   = {On Electrodynamics},
+				journal = {Annalen der Physik},
+				year    = {1905},
+				volume  = {17},
+				pages   = {891--921}
+			}
+			
+			@book{knuth1984,
+				author    = {Donald E. Knuth},
+				title     = {The TeXbook},
+				publisher = {Addison-Wesley},
+				year      = {1984}
+			}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}{BibTeX Entry Types}
+		\textbf{Common entry types:}
+		
+		\begin{columns}
+			\begin{column}{0.48\textwidth}
+				\begin{itemize}
+					\item \texttt{@article} - Journal paper
+					\item \texttt{@book} - Book
+					\item \texttt{@inproceedings} - Conference
+					\item \texttt{@phdthesis} - PhD thesis
+					\item \texttt{@mastersthesis} - Master's
+				\end{itemize}
+			\end{column}
+			
+			\begin{column}{0.48\textwidth}
+				\begin{itemize}
+					\item \texttt{@techreport} - Report
+					\item \texttt{@misc} - Other
+					\item \texttt{@online} - Web resource
+					\item \texttt{@incollection} - Chapter
+					\item \texttt{@manual} - Manual
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Using BibTeX in Documents}
+		\begin{lstlisting}
+			@\textbackslash@documentclass{article}
+			@\textbackslash@usepackage{cite}
+			
+			@\textbackslash@begin{document}
+			
+			Recent research @\textbackslash@cite{smith2023} shows...
+			Multiple studies @\textbackslash@cite{jones2022,brown2021}...
+			
+			@\textbackslash@bibliographystyle{plain}
+			@\textbackslash@bibliography{references}
+			
+			@\textbackslash@end{document}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Compilation Process}
+		\textbf{To compile with BibTeX:}
+		
+		\begin{lstlisting}[language=bash]
+			pdflatex mydocument.tex
+			bibtex mydocument
+			pdflatex mydocument.tex
+			pdflatex mydocument.tex
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\begin{block}{In Overleaf}
+			Overleaf handles this automatically! Just click "Recompile."
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}{Citation Styles}
+		Change style with \texttt{\textbackslash bibliographystyle\{...\}}:
+		
+		\begin{description}
+			\item[plain] Alphabetical, numbered
+			\item[alpha] Alpha-numeric labels [Ein05]
+			\item[ieeetr] IEEE Transactions style
+			\item[apalike] APA-like (author-year)
+			\item[abbrv] Abbreviated names
+			\item[unsrt] Unsorted (citation order)
+		\end{description}
+	\end{frame}
+	
+	\begin{frame}[fragile]{natbib Package}
+		For flexible citations:
+		
+		\begin{lstlisting}
+			@\textbackslash@usepackage{natbib}
+			
+			% Textual citation
+			@\textbackslash@citet{smith2023} showed...
+			% Output: Smith (2023) showed...
+			
+			% Parenthetical citation
+			Recent studies @\textbackslash@citep{jones2022}...
+			% Output: Recent studies (Jones, 2022)...
+			
+			@\textbackslash@bibliographystyle{plainnat}
+			@\textbackslash@bibliography{references}
+		\end{lstlisting}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Document Organization}
+	
+	\begin{frame}[fragile]{Multi-File Projects}
+		For large documents, split into files:
+		
+		\textbf{Main file (main.tex):}
+		\begin{lstlisting}
+			@\textbackslash@documentclass{report}
+			@\textbackslash@usepackage{...}
+			
+			@\textbackslash@begin{document}
+			
+			@\textbackslash@input{chapters/chapter1}
+			@\textbackslash@input{chapters/chapter2}
+			@\textbackslash@input{chapters/chapter3}
+			
+			@\textbackslash@bibliography{references}
+			
+			@\textbackslash@end{document}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{include vs. input}
+		\textbf{Two commands for external files:}
+		
+		\begin{block}{\textbackslash input\{file\}}
+			\begin{itemize}
+				\item Simply inserts content
+				\item No new page
+				\item Use for any content
+			\end{itemize}
+		\end{block}
+		
+		\begin{block}{\textbackslash include\{file\}}
+			\begin{itemize}
+				\item Starts new page before/after
+				\item Can use \texttt{\textbackslash includeonly}
+				\item Use for chapters
+			\end{itemize}
+		\end{block}
+		
+		\begin{lstlisting}
+			@\textbackslash@includeonly{chapter2,chapter3}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}{Project Structure}
+		\textbf{Recommended organization:}
+		
+		\begin{itemize}
+			\item \texttt{thesis/}
+			\begin{itemize}
+				\item \texttt{main.tex}
+				\item \texttt{preamble.tex}
+				\item \texttt{references.bib}
+				\item \texttt{chapters/}
+				\begin{itemize}
+					\item \texttt{chapter1.tex}
+					\item \texttt{chapter2.tex}
+				\end{itemize}
+				\item \texttt{figures/}
+				\item \texttt{tables/}
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Reports and Theses}
+	
+	\begin{frame}[fragile]{Report Document Class}
+		The \texttt{report} class for longer documents:
+		
+		\begin{lstlisting}
+			@\textbackslash@documentclass[12pt,a4paper]{report}
+			@\textbackslash@usepackage[margin=1in]{geometry}
+			@\textbackslash@usepackage{graphicx}
+			@\textbackslash@usepackage{natbib}
+			
+			@\textbackslash@title{Research Report}
+			@\textbackslash@author{Your Name}
+			@\textbackslash@date{@\textbackslash@today}
+			
+			@\textbackslash@begin{document}
+			@\textbackslash@maketitle
+			@\textbackslash@tableofcontents
+			@\textbackslash@chapter{Introduction}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Title Page and Front Matter}
+		\begin{lstlisting}
+			@\textbackslash@begin{document}
+			
+			% Title page
+			@\textbackslash@maketitle
+			
+			% Abstract
+			@\textbackslash@begin{abstract}
+			Research summary...
+			@\textbackslash@end{abstract}
+			
+			% Contents
+			@\textbackslash@tableofcontents
+			@\textbackslash@listoffigures
+			@\textbackslash@listoftables
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Chapter vs. Section}
+		\textbf{In report/book classes:}
+		
+		\begin{lstlisting}
+			@\textbackslash@chapter{Introduction}
+			@\textbackslash@section{Background}
+			@\textbackslash@subsection{Context}
+			@\textbackslash@subsubsection{Details}
+		\end{lstlisting}
+		
+		\vspace{1em}
+		
+		\textbf{Numbering:}
+		\begin{itemize}
+			\item Chapters: 1, 2, 3, ...
+			\item Sections: 1.1, 1.2, 2.1, ...
+			\item Subsections: 1.1.1, 1.1.2, ...
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Thesis-Specific Elements}
+		\begin{lstlisting}
+			% Dedication
+			@\textbackslash@chapter*{Dedication}
+			To my family...
+			
+			% Acknowledgments
+			@\textbackslash@chapter*{Acknowledgments}
+			I thank...
+			
+			% Appendices
+			@\textbackslash@appendix
+			@\textbackslash@chapter{Survey Data}
+			@\textbackslash@chapter{Additional Results}
+		\end{lstlisting}
+		
+		\begin{alertblock}{Note}
+			After \texttt{\textbackslash appendix}, chapters labeled A, B, C...
+		\end{alertblock}
+	\end{frame}
+	
+	\begin{frame}{SUZA Thesis Requirements}
+		\textbf{Check with your department:}
+		\begin{itemize}
+			\item Official SUZA thesis template
+			\item Formatting requirements
+			\item Title page layout
+			\item Citation style
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Common Requirements:}
+		\begin{itemize}
+			\item Double spacing: \texttt{\textbackslash usepackage\{setspace\}}
+			\item Specific margins: \texttt{\textbackslash usepackage\{geometry\}}
+			\item Page numbering styles
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Creating Presentations}
+	
+	\begin{frame}{Introduction to Beamer}
+		\begin{block}{What is Beamer?}
+			LaTeX document class for presentation slides.
+		\end{block}
+		
+		\vspace{1em}
+		
+		\textbf{Advantages:}
+		\begin{itemize}
+			\item Professional, consistent design
+			\item Easy math formulas
+			\item Version control friendly
+			\item Reuse content from papers
+			\item Automatic navigation
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{This presentation is made with Beamer!}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Basic Beamer Structure}
+		\begin{lstlisting}
+			@\textbackslash@documentclass{beamer}
+			@\textbackslash@usetheme{Madrid}
+			
+			@\textbackslash@title{My Presentation}
+			@\textbackslash@author{Your Name}
+			@\textbackslash@date{@\textbackslash@today}
+			
+			@\textbackslash@begin{document}
+			
+			@\textbackslash@frame{@\textbackslash@titlepage}
+			
+			@\textbackslash@begin{frame}{First Slide}
+			Content here...
+			@\textbackslash@end{frame}
+			
+			@\textbackslash@end{document}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}{Beamer Themes}
+		\textbf{Choose with} \texttt{\textbackslash usetheme\{\}}:
+		
+		\begin{columns}
+			\begin{column}{0.48\textwidth}
+				\textbf{Popular Themes:}
+				\begin{itemize}
+					\item Madrid
+					\item Berlin
+					\item Copenhagen
+					\item Warsaw
+					\item Singapore
+				\end{itemize}
+			\end{column}
+			
+			\begin{column}{0.48\textwidth}
+				\textbf{Color Themes:}
+				\begin{itemize}
+					\item default
+					\item beaver
+					\item crane
+					\item dolphin
+					\item orchid
+				\end{itemize}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Slide Elements}
+		\begin{lstlisting}
+			@\textbackslash@begin{frame}{Title}
+			
+			@\textbackslash@begin{block}{Block Title}
+			Important content in box.
+			@\textbackslash@end{block}
+			
+			@\textbackslash@begin{alertblock}{Warning}
+			Pay attention!
+			@\textbackslash@end{alertblock}
+			
+			@\textbackslash@begin{exampleblock}{Example}
+			Example here...
+			@\textbackslash@end{exampleblock}
+			
+			@\textbackslash@end{frame}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Columns and Lists}
+		\begin{lstlisting}
+			@\textbackslash@begin{frame}{Two Columns}
+			@\textbackslash@begin{columns}
+			@\textbackslash@begin{column}{0.48@\textbackslash@textwidth}
+			Left content
+			@\textbackslash@end{column}
+			@\textbackslash@begin{column}{0.48@\textbackslash@textwidth}
+			Right content
+			@\textbackslash@end{column}
+			@\textbackslash@end{columns}
+			@\textbackslash@end{frame}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Overlays and Animations}
+		\begin{lstlisting}
+			@\textbackslash@begin{frame}{Progressive}
+			@\textbackslash@begin{itemize}
+			@\textbackslash@item<1-> First appears
+			@\textbackslash@item<2-> Second appears
+			@\textbackslash@item<3-> Third appears
+			@\textbackslash@end{itemize}
+			
+			@\textbackslash@pause
+			After pause.
+			
+			@\textbackslash@only<1>{Visible slide 1}
+			@\textbackslash@only<2>{Visible slide 2}
+			@\textbackslash@end{frame}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Table of Contents}
+		\begin{lstlisting}
+			@\textbackslash@begin{frame}{Outline}
+			@\textbackslash@tableofcontents
+			@\textbackslash@end{frame}
+			
+			% Highlight current section
+			@\textbackslash@begin{frame}{Outline}
+			@\textbackslash@tableofcontents[currentsection]
+			@\textbackslash@end{frame}
+			
+			% Define sections
+			@\textbackslash@section{Introduction}
+			@\textbackslash@section{Methods}
+		\end{lstlisting}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Custom Commands}
+	
+	\begin{frame}{Why Custom Commands?}
+		\textbf{Benefits:}
+		\begin{itemize}
+			\item Reduce repetitive typing
+			\item Ensure consistency
+			\item Easy global updates
+			\item More readable code
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Example:} Instead of typing\\
+		\texttt{\textbackslash textbf\{\textbackslash textit\{\textbackslash textcolor\{blue\}\{text\}\}\}}\\
+		every time, create:\\
+		\texttt{\textbackslash highlight\{text\}}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Defining Commands}
+		\begin{lstlisting}
+			% Simple (no arguments)
+			@\textbackslash@newcommand{@\textbackslash@suza}{State University of Zanzibar}
+			
+			% One argument
+			@\textbackslash@newcommand{@\textbackslash@dept}[1]{Department of #1}
+			
+			% Multiple arguments
+			@\textbackslash@newcommand{@\textbackslash@super}[2]{Supervisor: #1, #2}
+			
+			% Using them
+			@\textbackslash@suza{}
+			@\textbackslash@dept{Computer Science}
+			@\textbackslash@super{Dr. Smith}{SUZA}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Math Commands}
+		\begin{lstlisting}
+			% Expectation
+			@\textbackslash@newcommand{@\textbackslash@E}{@\textbackslash@mathbb{E}}
+			
+			% Probability
+			@\textbackslash@newcommand{@\textbackslash@Prob}{@\textbackslash@mathbb{P}}
+			
+			% Vectors
+			@\textbackslash@newcommand{@\textbackslash@vect}[1]{@\textbackslash@mathbf{#1}}
+			
+			% Usage
+			$@\textbackslash@E[X]$ is expected value.
+			$@\textbackslash@Prob(A)$ is probability.
+			$@\textbackslash@vect{x} = (x_1, x_2)$
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Renewing Commands}
+		\begin{lstlisting}
+			% Modify existing commands
+			@\textbackslash@renewcommand{@\textbackslash@vec}[1]{@\textbackslash@mathbf{#1}}
+			
+			% Custom section formatting
+			@\textbackslash@renewcommand{@\textbackslash@section}[1]{
+				@\textbackslash@vspace{1em}
+				@\textbackslash@textbf{@\textbackslash@Large #1}
+				@\textbackslash@vspace{0.5em}
+			}
+		\end{lstlisting}
+		
+		\begin{alertblock}{Warning}
+			Be careful when renewing standard commands!
+		\end{alertblock}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Advanced Formatting}
+	
+	\begin{frame}[fragile]{Professional Tables}
+		Use \texttt{booktabs} package:
+		
+		\begin{lstlisting}
+			@\textbackslash@usepackage{booktabs}
+			
+			@\textbackslash@begin{table}
+			@\textbackslash@centering
+			@\textbackslash@begin{tabular}{lcc}
+			@\textbackslash@toprule
+			Method & Accuracy & F1 \\
+			@\textbackslash@midrule
+			Baseline & 0.85 & 0.82 \\
+			Proposed & 0.92 & 0.90 \\
+			@\textbackslash@bottomrule
+			@\textbackslash@end{tabular}
+			@\textbackslash@end{table}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Subfigures}
+		\begin{lstlisting}
+			@\textbackslash@usepackage{subcaption}
+			
+			@\textbackslash@begin{figure}
+			@\textbackslash@begin{subfigure}{0.45@\textbackslash@textwidth}
+			@\textbackslash@includegraphics[width=@\textbackslash@textwidth]{plot1.pdf}
+			@\textbackslash@caption{First}
+			@\textbackslash@end{subfigure}
+			@\textbackslash@begin{subfigure}{0.45@\textbackslash@textwidth}
+			@\textbackslash@includegraphics[width=@\textbackslash@textwidth]{plot2.pdf}
+			@\textbackslash@caption{Second}
+			@\textbackslash@end{subfigure}
+			@\textbackslash@caption{Comparison}
+			@\textbackslash@end{figure}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Line Spacing and Margins}
+		\begin{lstlisting}
+			% Line spacing
+			@\textbackslash@usepackage{setspace}
+			@\textbackslash@doublespacing  % or @\textbackslash@onehalfspacing
+			
+			% Custom margins
+			@\textbackslash@usepackage[top=1in, bottom=1in,
+			left=1.25in, right=1in]{geometry}
+			
+			% Paragraph spacing
+			@\textbackslash@setlength{@\textbackslash@parskip}{1em}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Headers and Footers}
+		\begin{lstlisting}
+			@\textbackslash@usepackage{fancyhdr}
+			@\textbackslash@pagestyle{fancy}
+			
+			@\textbackslash@fancyhead[L]{Left Header}
+			@\textbackslash@fancyhead[C]{Center}
+			@\textbackslash@fancyhead[R]{Right}
+			
+			@\textbackslash@fancyfoot[C]{@\textbackslash@thepage}
+			
+			% Remove lines
+			@\textbackslash@renewcommand{@\textbackslash@headrulewidth}{0pt}
+		\end{lstlisting}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Collaborative Writing}
+	
+	\begin{frame}{Overleaf Collaboration}
+		\textbf{Sharing Projects:}
+		\begin{itemize}
+			\item Click "Share" in project
+			\item Invite by email
+			\item Set permissions (view/edit/owner)
+			\item Real-time collaboration
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Version History:}
+		\begin{itemize}
+			\item Automatic tracking
+			\item View previous versions
+			\item Compare side-by-side
+			\item Add labels
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]{Comments and Tracking}
+		\begin{lstlisting}
+			% Comments in code
+			% TODO: Add details
+			% FIXME: Check citation
+			
+			% Or use todonotes
+			@\textbackslash@usepackage{todonotes}
+			
+			@\textbackslash@todo{Review this}
+			@\textbackslash@todo[inline]{Add figure}
+			
+			% Track changes
+			@\textbackslash@usepackage{changes}
+			@\textbackslash@added{New text}
+			@\textbackslash@deleted{Old text}
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}{Git for LaTeX}
+		\textbf{Why Git?}
+		\begin{itemize}
+			\item Complete version control
+			\item Offline work
+			\item Branching for revisions
+			\item Backup and collaboration
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Best Practices:}
+		\begin{itemize}
+			\item Commit frequently
+			\item Use \texttt{.gitignore} for aux files
+			\item One sentence per line
+			\item Tag releases
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Hands-On Practice}
+	
+	\begin{frame}{Exercise 1: Bibliography}
+		\textbf{Task:}
+		\begin{enumerate}
+			\item Create \texttt{references.bib} with 5 entries
+			\item Create document citing all
+			\item Use \texttt{natbib}
+			\item Try different styles
+			\item Compile successfully
+		\end{enumerate}
+		
+		\vspace{1em}
+		\textbf{Time: 20 minutes}
+		
+		\vspace{0.5em}
+		\textit{Hint: Use Google Scholar's "Cite" for BibTeX!}
+	\end{frame}
+	
+	\begin{frame}{Exercise 2: Report Template}
+		\textbf{Task:}
+		\begin{enumerate}
+			\item Multi-chapter report with:
+			\begin{itemize}
+				\item Title page with abstract
+				\item Table of contents
+				\item 3 chapters
+				\item Table and figure
+				\item Bibliography
+			\end{itemize}
+			\item Use \texttt{report} class
+			\item Split chapters into files
+			\item Add custom command
+		\end{enumerate}
+		
+		\vspace{1em}
+		\textbf{Time: 25 minutes}
+	\end{frame}
+	
+	\begin{frame}{Exercise 3: Beamer}
+		\textbf{Task:}
+		\begin{enumerate}
+			\item 5-slide presentation about research
+			\item Include:
+			\begin{itemize}
+				\item Title slide
+				\item Table of contents
+				\item Blocks and columns
+				\item Equation
+				\item Progressive reveal
+			\end{itemize}
+			\item Choose and customize theme
+		\end{enumerate}
+		
+		\vspace{1em}
+		\textbf{Time: 20 minutes}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Tips and Best Practices}
+	
+	\begin{frame}{Writing Efficiently}
+		\textbf{Organization:}
+		\begin{itemize}
+			\item Consistent naming
+			\item One sentence per line
+			\item Comment generously
+			\item Meaningful labels
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Performance:}
+		\begin{itemize}
+			\item Use \texttt{\textbackslash includeonly}
+			\item Compress images
+			\item Draft mode
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Common Pitfalls}
+		\begin{enumerate}
+			\item Hardcoding numbers
+			\item Manual spacing
+			\item Inconsistent formatting
+			\item Ignoring warnings
+			\item Not backing up
+			\item Wrong figure formats
+		\end{enumerate}
+	\end{frame}
+	
+	\begin{frame}{Resources}
+		\textbf{Documentation:}
+		\begin{itemize}
+			\item CTAN: \url{https://www.ctan.org}
+			\item Package docs: \texttt{texdoc <package>}
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{Specialized:}
+		\begin{itemize}
+			\item TikZ: \url{https://tikz.dev}
+			\item PGFPlots: \url{https://pgfplots.sourceforge.net}
+		\end{itemize}
+		
+		\vspace{0.5em}
+		
+		\textbf{Templates:}
+		\begin{itemize}
+			\item Overleaf: \url{https://www.overleaf.com/latex/templates}
+		\end{itemize}
+	\end{frame}
+	
+	%==============================================================================
+	\section{Preparing for Day 3}
+	
+	\begin{frame}{Tomorrow: AI Integration}
+		\textbf{Day 3 Topics:}
+		\begin{itemize}
+			\item AI tools for LaTeX assistance
+			\item Generating LaTeX from natural language
+			\item AI citation management
+			\item Automated generation
+			\item Proofreading with AI
+			\item Ethics in AI writing
+			\item Complete research document
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\begin{exampleblock}{Prepare}
+			Bring research topic for final project!
+		\end{exampleblock}
+	\end{frame}
+	
+	\begin{frame}{Homework (Optional)}
+		\textbf{Conference paper template:}
+		\begin{itemize}
+			\item Two-column \texttt{article}
+			\item Title, authors, abstract
+			\item Several sections
+			\item 2 figures, 1 table
+			\item 5 citations
+			\item IEEE or ACM style
+		\end{itemize}
+		
+		\vspace{1em}
+		
+		\textbf{Bonus:}
+		Find Overleaf template for your field!
+	\end{frame}
+	
+	%==============================================================================
+	\begin{frame}
+		\begin{center}
+			\Huge\textbf{Thank You!}
+			
+			\vspace{2em}
+			
+			\Large Day 2 Complete!
+			
+			\vspace{1em}
+			
+			\normalsize
+			Questions? Discussion?
+			
+			\vspace{1em}
+			
+			massoud.hamad@suza.ac.tz
+		\end{center}
+	\end{frame}
+	
+\end{document}

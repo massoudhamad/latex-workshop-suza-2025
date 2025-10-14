@@ -1,0 +1,17 @@
+\frametitle{Comments and Tracking}
+\begin{lstlisting}
+			% Comments in code
+			% TODO: Add details
+			% FIXME: Check citation
+			
+			% Or use todonotes
+			@\textbackslash@usepackage{todonotes}
+			
+			@\textbackslash@todo{Review this}
+			@\textbackslash@todo[inline]{Add figure}
+			
+			% Track changes
+			@\textbackslash@usepackage{changes}
+			@\textbackslash@added{New text}
+			@\textbackslash@deleted{Old text}
+		\end{lstlisting}
