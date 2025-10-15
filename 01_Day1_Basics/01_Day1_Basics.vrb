@@ -1,19 +1,19 @@
 \frametitle{Label Naming Convention}
 \textbf{Good Practice:}
-		
-		\begin{lstlisting}
-			@\textbackslash@label{sec:introduction}  % Sections
-			@\textbackslash@label{fig:results}       % Figures
-			@\textbackslash@label{tab:data}          % Tables
-			@\textbackslash@label{eq:quadratic}      % Equations
-		\end{lstlisting}
-		
-		\vspace{1em}
-		
-		\textbf{Benefits:}
-		\begin{itemize}
-			\item Easy to remember
-			\item Avoid naming conflicts
-			\item Clear documentation
-			\item Better organization
-		\end{itemize}
+^^I^^I
+^^I^^I\begin{lstlisting}
+^^I^^I^^I@\textbackslash@label{sec:introduction}  % Sections
+^^I^^I^^I@\textbackslash@label{fig:results}       % Figures
+^^I^^I^^I@\textbackslash@label{tab:data}          % Tables
+^^I^^I^^I@\textbackslash@label{eq:quadratic}      % Equations
+^^I^^I\end{lstlisting}
+^^I^^I
+^^I^^I\vspace{1em}
+^^I^^I
+^^I^^I\textbf{Benefits:}
+^^I^^I\begin{itemize}
+^^I^^I^^I\item Easy to remember
+^^I^^I^^I\item Avoid naming conflicts
+^^I^^I^^I\item Clear documentation
+^^I^^I^^I\item Better organization
+^^I^^I\end{itemize}
